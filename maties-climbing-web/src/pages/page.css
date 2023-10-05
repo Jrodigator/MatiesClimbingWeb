@@ -3,3 +3,9 @@ h2 {
   text-align: center;
   padding: 50px;
 }
+
+.custom-separator {
+  height: 5px;
+  background-color: #428BCA;
+  margin: -12px -15px 10px;
+}

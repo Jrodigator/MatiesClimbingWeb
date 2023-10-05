@@ -25,12 +25,11 @@ function NewsPage() {
         marginTop: '5%',
         marginBottom: '5%',
         fontweight: "bold"
-
     }
   return (
     <div className="container" style={background}>
       <div className="row">
-        <h2 className="" style={title}>Our News Letters </h2>
+        <h2 className="d-flex justify-content-center" style={title}>Our News Letters </h2>
         <div className="row">
           <Card
             imgSrc={require("../docs/4octimg.png")}
