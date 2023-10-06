@@ -4,32 +4,34 @@ import { Card } from "../components/Card.js";
 import "./page.css";
 
 function NewsPage() {
-    const background={
-        backgroundImage: `url(${require("../docs/A7R0316.jpg")})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        width: '100%',
-        maxWidth: '100%',
-        height: '1000px',
-        maxHeight: '100%',
-        position: 'middle',
-        opacity: '1'
-    }
-    const title={
-        width : '20%',
-        marginLeft: '40%',
-        color: 'white',
-        textAlign: 'center',
-        textSize: '5%',
-        marginTop: '5%',
-        marginBottom: '5%',
-        fontweight: "bold"
-    }
+  const background = {
+    backgroundImage: `url(${require("../docs/GO2.jpg")})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    width: "100%",
+    maxWidth: "100%",
+    height: "1000px",
+    maxHeight: "100%",
+    position: "middle",
+    opacity: "1",
+  };
+  const title = {
+    width: "20%",
+    marginLeft: "40%",
+    color: "white",
+    textAlign: "center",
+    textSize: "5%",
+    marginTop: "5%",
+    marginBottom: "5%",
+    fontweight: "bold",
+  };
   return (
     <div className="container" style={background}>
       <div className="row">
-        <h2 className="d-flex justify-content-center" style={title}>Our News Letters </h2>
+        <h2 className="d-flex justify-content-center" style={title}>
+          Our News Letters{" "}
+        </h2>
         <div className="row">
           <Card
             imgSrc={require("../docs/4octimg.png")}

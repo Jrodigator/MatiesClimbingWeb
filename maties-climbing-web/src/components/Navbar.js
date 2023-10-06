@@ -58,7 +58,11 @@ const Navbar = () => {
         <div className="navbar navbar-dark bg-dark box-shadow">
           <div className="container d-flex justify-content-between">
             <a href="#" className="navbar-brand d-flex align-items-center">
-              Logo
+              <img
+                src={require("../docs/matieslogo.png")}
+                alt="logo"
+                width="50px"
+              />
               <ul></ul>
               <strong>Maties Climbing</strong>
             </a>
@@ -82,7 +86,7 @@ const Navbar = () => {
               </li>
               <ul></ul>
               <li className="nav-item">
-                <a className="nav-link" href="\contact">
+                <a className="nav-link" href="\gallery">
                   Gallery
                 </a>
               </li>
