@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Card } from "../components/Card.js";
 import "./page.css";
 
 function NewsPage() {
+    const [description, setDescription] = useState('');
+    useEffect(() => {
+        fetch("http://localhost:9000/testAPI")
+        .then((response) => response.json())
+        .then((data) => {
+            setDescription(data);
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+    }, []);
+
     const background={
         backgroundImage: `url(${require("../docs/A7R0316.jpg")})`,
         backgroundSize: 'cover',
@@ -35,7 +47,7 @@ function NewsPage() {
             imgSrc={require("../docs/4octimg.png")}
             imgAlt="Image"
             title="Oct 4th"
-            description="News Letter for the week 04/10/2023"
+            description={description}
             buttonText="View Newsletter"
             link={require("../docs/4octnews.pdf")}
           ></Card>
