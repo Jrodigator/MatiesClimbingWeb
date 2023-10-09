@@ -2,7 +2,7 @@
 import React, { UseState } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap/dist/js/bootstrap.js";
+//import "bootstrap/dist/js/bootstrap.js";
 
 import HomePage from "../pages/home";
 import NewsPage from "../pages/news";
