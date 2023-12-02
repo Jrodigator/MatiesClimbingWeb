@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import HomePage from "./pages/home";
 import NewsPage from "./pages/news";
 import NoPage from "./pages/nopage";
+import SignupPage from "./pages/signup";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/home" element={<HomePage />} />
           <Route path="/news" element={<NewsPage />} />
+          <Route path="/signup" element={<SignupPage />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
     </>
