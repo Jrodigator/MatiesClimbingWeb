@@ -92,6 +92,12 @@ const Navbar = () => {
                   Retroflash
                 </a>
               </li>
+              <ul></ul>
+              <li className="nav-item">
+                <a className="nav-link" href="\signup">
+                    Signup
+                </a>
+              </li>
             </ul>
             <button
               className="navbar-toggler"
