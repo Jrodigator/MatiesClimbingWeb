@@ -58,7 +58,6 @@ const Navbar = () => {
         <div className="navbar navbar-dark bg-dark box-shadow">
           <div className="container d-flex justify-content-between">
             <a href="#" className="navbar-brand d-flex align-items-center">
-              Logo
               <ul></ul>
               <strong>Maties Climbing</strong>
             </a>
