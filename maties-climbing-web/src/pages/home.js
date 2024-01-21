@@ -9,7 +9,7 @@ function HomePage() {
     backgroundRepeat: "no-repeat",
     width: "100%",
     maxWidth: "100%",
-    height: "900px",
+    height: "800px",
     maxHeight: "100%",
     position: "middle",
     opacity: "1",
@@ -20,7 +20,7 @@ function HomePage() {
     color: "white",
     textAlign: "center",
     textSize: "5rem",
-    marginTop: "20rem",
+    marginTop: "19rem",
     marginBottom: "1rem",
     fontweight: "bold",
   };
@@ -30,23 +30,14 @@ function HomePage() {
       {/* LANDING PAGE */}
       <div className="container" style={background}>
         <div className="row">
-          <div className="col">
             <h1 style={title} id="welcome">
               Welcome to Maties Climbing
             </h1>
+          <div className="row">
             <div
               className="custom-separator"
               style={{title, width: "60%", marginLeft: "20%" }}
             ></div>
-          </div>
-        </div>
-      </div>
-      <div className="vr"></div>
-      {/* SCROLL SEC 1 PAGE */}
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            <h1 style={title}>TEST Page</h1>
           </div>
         </div>
       </div>

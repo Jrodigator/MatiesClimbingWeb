@@ -63,37 +63,35 @@ const Navbar = () => {
             </a>
             <ul className="navbar-nav mx-auto d-flex flex-row">
               <li className="nav-item active">
-                <a className="nav-link" href="\home">
-                  Home
-                </a>
+                <a className="nav-link" href="/home">Home</a>
               </li>
               <ul></ul>
               <li className="nav-item">
-                <a className="nav-link" href="\news">
+                <a className="nav-link" href="/news">
                   News
                 </a>
               </li>
               <ul></ul>
               <li className="nav-item">
-                <a className="nav-link" href="\about">
-                  Events
+                <a className="nav-link" href="/about">
+                  About
                 </a>
               </li>
               <ul></ul>
               <li className="nav-item">
-                <a className="nav-link" href="\contact">
+                <a className="nav-link" href="/contact">
                   Gallery
                 </a>
               </li>
               <ul></ul>
               <li className="nav-item">
-                <a className="nav-link" href="\contact">
+                <a className="nav-link" href="/contact">
                   Retroflash
                 </a>
               </li>
               <ul></ul>
               <li className="nav-item">
-                <a className="nav-link" href="\signup">
+                <a className="nav-link" href="/signup">
                     Signup
                 </a>
               </li>
