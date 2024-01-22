@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./page.css";
+import gymRules from "../docs/MatiesRulesPoster.png"; 
 
 function AboutPage() {
   const background = {
@@ -20,7 +21,7 @@ function AboutPage() {
     color: "white",
     textAlign: "center",
     textSize: "5rem",
-    marginTop: "12rem",
+    marginTop: "5rem",
     marginBottom: "1rem",
     fontweight: "bold",
   };
@@ -50,12 +51,12 @@ function AboutPage() {
           <div className="row">
             <div
               className="custom-separator"
-              style={{title, width: "60%", marginLeft: "20%", marginBottom: "10%" }}
+              style={{title, width: "60%", marginLeft: "20%", marginBottom: "20%" }}
             ></div>
           </div>
           <div>
-          <list style={paragraph}>
-                <ul>
+          <list>
+                <ul style={paragraph}>
                         <li>Maties climbing is open to anyone interested in Rock Climbing</li>
                         <li>We are a registered sport at the University and cater for beginners as wel as experienced climbers</li>
                         <li>The climbing wall has 24/7 access for members</li>
@@ -71,7 +72,7 @@ function AboutPage() {
               style={{title, width: "40%", marginLeft: "30%", marginBottom: "2%" }}
             ></div>
           </div>
-            <ul>
+            <ul style={paragraph}>
              <li>Memberships costs are R500 per year for STUDENTS and R650 for NON-STUDENTS</li>
              <li>Day passes are R45 per day, shoes included!</li>
              <li>Payments cna be done via EFT</li>
@@ -82,33 +83,49 @@ function AboutPage() {
           <div className="row">
             <div
               className="custom-separator"
-              style={{title, width: "60%", marginLeft: "20%", marginBottom: "10%" }}
+              style={{title, width: "40%", marginLeft: "30%", marginBottom: "2%" }}
             ></div>
           </div>
-          <ul>
+           <ul style={paragraph}>
             <li> The bouldering cave (climbing wall) can be found at the far eastern ide of the coetzenberg sports grounds (Past the underwater club and the last cricket field). </li>
-          <li> <a href="https://maps.google.com">Directions</a></li>
+          <li> <a href="https://www.google.com/maps/place/Maties+Rock+Climbing+Wall/@-33.9390587,18.8795416,17z/data=!3m1!4b1!4m6!3m5!1s0x1dcdb356f7d64ee9:0x9b190fbd784be7d4!8m2!3d-33.9390587!4d18.8821165!16s%2Fg%2F11j8m3gw4p?entry=ttu">Directions</a></li>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.0804571921617!2d18.882116500000002!3d-33.9390587!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcdb356f7d64ee9%3A0x9b190fbd784be7d4!2sMaties%20Rock%20Climbing%20Wall!5e0!3m2!1sen!2sza!4v1705846206758!5m2!1sen!2sza" style={{border: 0,width:"400", height:"300", marginLeft:"40%"}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </ul>
-          <h2 style={subHeading}> Gym Rules: </h2>
-          <div className="row">
-            <div
-              className="custom-separator"
-              style={{title, width: "60%", marginLeft: "20%", marginBottom: "10%" }}
-            ></div>
-          </div>
-          <img 
-          src="https://lh4.googleusercontent.com/AnT4DcDm9OU8KLBGv-cMK5fmcHbblAedpZiZeEbW4F5_pb-AcBSfo4oSqQAbxc0h_YGNsTuHKIDh_aGoAJIZHj0kIpfoESU3XGeFbT1JQZZB5nxgm8AHSaJjw4R0hDOT3w=w1280" marginLeft="20%" width="80%" height="60%"/>
+
           <h2 style={subHeading}> Gear Rental: </h2>
           <div className="row">
             <div
               className="custom-separator"
-              style={{title, width: "60%", marginLeft: "20%", marginBottom: "10%" }}
+              style={{title, width: "40%", marginLeft: "30%", marginBottom: "2%" }}
             ></div>
-          <ul>
-          <li>Rent gaer through this <a href="https://">link</a></li>
-          </ul>
           </div>
+          <ul style={paragraph}>
+          <li>Rent gear through this <a href="https://forms.gle/Kxwq3JsuegHBv1iq5">link</a></li>
+          </ul>
+
+          <h2 style={subHeading}>Usefull websites </h2>
+          <div className="row">
+            <div
+              className="custom-separator"
+              style={{title, width: "40%", marginLeft: "30%", marginBottom: "2%" }}
+            ></div>
+          </div>
+                <ul>
+                        <li>Rocklands: <a href="https://www.rocklands.africa/">https://www.rocklands.africa/</a></li>
+                        <li>ClimbingZA Stellenbosch: <a href="https://www.climbing.co.za/wiki/Stellenbosch">https://www.climbing.co.za/wiki/Stellenbosch</a></li>
+                        <li>MSCA: <a href="https://stellenbosch.mcsa.org.za/">https://stellenbosch.mcsa.org.za/</a></li>
+                        <li>The Crag: <a href="https://www.thecrag.com/en/home">https://www.thecrag.com/en/home</a></li>
+                </ul>
         </div>
+
+          <h2 style={subHeading}> Gym Rules: </h2>
+          <div className="row">
+            <div
+              className="custom-separator"
+              style={{title, width: "40%", marginLeft: "30%", marginBottom: "2%" }}
+            ></div>
+          </div>
+          <img src={gymRules} marginLeft="20%" width="80%" height="60%"/>
       </div>
     </div>
   </div>
