@@ -1,11 +1,14 @@
 const express = require('express')
 const cors = require('cors');
-const app = express()
-const port = 3001
+const multer = require('multer');
+
+const app = express();
+// Set up Multer for file upload
+const upload = multer({ dest: 'uploads/' });
+const port = 3001;
 
 const member_model = require('./memberModel');
 
-app.use(express.json())
 // Enable CORS for all routes
 app.use(cors({ origin: 'http://localhost:3000' }));
 // app.use(function (req, res, next) {
@@ -14,6 +17,7 @@ app.use(cors({ origin: 'http://localhost:3000' }));
 //     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
 //     next()
 // });
+app.use(express.json())
 
 
 app.get('/', (req, res) => {
@@ -40,9 +44,16 @@ app.post('/member/:id', (req, res) => {
 })
 
 // save a member
-app.post('/member', (req, res) => {
-    member_model.createMember(req.body)
+app.post('/member', upload.single('pop'), (req, res) => {
+    const pop = req.file; // Uploaded file
+    console.log(pop);
+
+    // save the file to the filesystem
+
+    const body = req.body;
+    member_model.createMember(body)
     .then(response => {
+        // create the pop model and save the metadata into that
         res.status(200).send(response);
     })
     .catch(error => {
@@ -66,5 +77,5 @@ app.put("/member/:id", (req, res) => {
 
 
 app.listen(port, () => {
-    console.log(`App running on port ${port}`);
+    console.log(`Express server is running on port ${port}`);
 })

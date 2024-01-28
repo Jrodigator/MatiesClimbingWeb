@@ -1,4 +1,4 @@
-// SEAN : I'm not sure where to put this but just adding it here to see how to call the express endpoints
+// SEAN : I'm not sure where to put this file but just adding it here to see how to call the express endpoints
 
 // function getMember() {
 //     fetch('http://localhost:3001')
@@ -31,36 +31,68 @@ function SignupPage() {
   const [membershipType, setMembershipType] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  // State variable for file upload
+  const [file, setFile] = useState(null);
+
+  const handleFileChange = (event) => {
+    // Get the file from input
+    const selectedFile = event.target.files[0];
+    setFile(selectedFile);
+  };
+
 
   const handleSignup = async () => {
+    // Validation checks
+    if (!name || !surname || !membershipType) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
     try {
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('surname', surname);
+    formData.append('username', username);
+    formData.append('password', password);
+    formData.append('email', email);
+    formData.append('phone_number', phoneNumber);
+    formData.append('student_number', studentNumber);
+    formData.append('id_number', idNumber);
+    formData.append('foreign_student', foreignStudent);
+    formData.append('gender', gender);
+    formData.append('membership_type', membershipType);
+    formData.append('start_date', "2024-01-01");
+    formData.append('end_date', "2024-01-02");
+    formData.append('pop', file);
+
       const response = await fetch("http://localhost:3001/member", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          surname,
-          username,
-          password,
-          email,
-          phone_number: phoneNumber,
-          student_number: studentNumber,
-          id_number: idNumber,
-          foreign_student: foreignStudent,
-          gender,
-          membership_type: membershipType,
-          start_date: "2024-01-01", //startDate, // this should be set based on teh membership type that is chosen (half or full year)
-          end_date: "2024-12-31", //endDate, // this should be set based on teh membership type that is chosen (half or full year)
-        }),
+        body: formData,
+        // JSON.stringify({
+        //   name,
+        //   surname,
+        //   username,
+        //   password,
+        //   email,
+        //   phone_number: phoneNumber,
+        //   student_number: studentNumber,
+        //   id_number: idNumber,
+        //   foreign_student: foreignStudent,
+        //   gender,
+        //   membership_type: membershipType,
+        //   start_date: "2024-01-01", //startDate, // this should be set based on teh membership type that is chosen (half or full year)
+        //   end_date: "2024-12-31", //endDate, // this should be set based on teh membership type that is chosen (half or full year)
+        //   pop: file,
+        // }),
       });
 
       if (response.ok) {
         // Handle successful signup
+        alert("User signed up succesfully!")
         console.log("User signed up successfully!");
       } else {
         // Handle signup failure
+        alert("Signup failed");
         console.error("Signup failed");
       }
     } catch (error) {
@@ -178,6 +210,14 @@ function SignupPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="proofOfPayment">Proof of Payment:</label>
+              <input
+                type="file"
+                id="proofOfPayment"
+                onChange={handleFileChange}
+              />
           </div>
           <div className="col-md-6">
             <button onClick={handleSignup}>Signup</button>

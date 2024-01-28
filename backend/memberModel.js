@@ -62,6 +62,7 @@ const getMember = async (id) => {
 
 // create a new member record
 const createMember = (body) => {
+        console.log(body);
     return new Promise(function (resolve, reject) {
         const {name, surname, username, password, email,
                 phone_number, student_number, id_number,
