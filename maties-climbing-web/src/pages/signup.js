@@ -68,22 +68,6 @@ function SignupPage() {
       const response = await fetch("http://localhost:3001/member", {
         method: "POST",
         body: formData,
-        // JSON.stringify({
-        //   name,
-        //   surname,
-        //   username,
-        //   password,
-        //   email,
-        //   phone_number: phoneNumber,
-        //   student_number: studentNumber,
-        //   id_number: idNumber,
-        //   foreign_student: foreignStudent,
-        //   gender,
-        //   membership_type: membershipType,
-        //   start_date: "2024-01-01", //startDate, // this should be set based on teh membership type that is chosen (half or full year)
-        //   end_date: "2024-12-31", //endDate, // this should be set based on teh membership type that is chosen (half or full year)
-        //   pop: file,
-        // }),
       });
 
       if (response.ok) {
