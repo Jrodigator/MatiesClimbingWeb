@@ -1,7 +1,8 @@
 # How to start the express server:
 
 - Make sure you have used the pg_restore tool to create your DB from the dump file.
-- Check the DB params in backend/memberModel.js. For local dev the only thing you might have to change is the user and password.
+- create a .env file in the backend/ directory
+- For local dev the only thing you might have to change is the user and password.
 Depends on how you installed and setup postgres
 
 - Start your react app in a separate terminal

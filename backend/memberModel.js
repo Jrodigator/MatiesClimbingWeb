@@ -1,13 +1,4 @@
-const Pool = require('pg').Pool
-const pool = new Pool({
-    host: 'localhost',
-    database: 'mcc',
-    user: 'postgres',
-// TODO should not include passwords and stuff in here in production
-// Install pacakge dotenv, and use environment variables to refernce these values from a .env file (and add the .env file to gitigore)
-    password: 'postgres',
-    port: 5432
-});
+const pool = require('./db');
 
 // from the membership_type table
 const membershipTypeEnum = {
