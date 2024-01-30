@@ -2,6 +2,8 @@ const express = require('express')
 const cors = require('cors');
 const multer = require('multer');
 const { getCurrentFormattedDate, getFilename } = require('./utils');
+const memberModel = require('./memberModel');
+const popModel = require('./popModel');
 
 const app = express();
 // Set up Multer for file upload
@@ -20,8 +22,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 const port = 3001;
 
-const memberModel = require('./memberModel');
-const popModel = require('./popModel');
 
 // Enable CORS for all routes
 app.use(cors({ origin: 'http://localhost:3000' }));
@@ -59,13 +59,25 @@ app.post('/member/:id', (req, res) => {
 
 // save a member
 app.post('/member', upload.single('pop'), (req, res) => {
-    const file = req.file;
-    const filepath = req.file.path;
-    const name = req.body.name;
-    const surname = req.body.surname;
-    const filename = getFilename(name, surname);
     const currentDateFormatted = getCurrentFormattedDate();
+    const membershipType = req.body.membership_type;
+    const paymentType = req.body.paymentType;
     // the file is automatically saved to disk at ../pop/<date>-<name>-<surname>
+    
+    // if they want to pay with student account then we don't save the file
+    let filename = ""
+    let filepath = "";
+    console.log(membershipType)
+    console.log(paymentType)
+    if (membershipType === "STUDENT" && paymentType === "studentAccount") {
+        filename = req.body.student_number;
+        filepath = "student-account"
+    } else {
+        filepath = req.file.path;
+        const name = req.body.name;
+        const surname = req.body.surname;
+        filename = getFilename(name, surname);
+    }
 
     const body = req.body;
     memberModel.createMember(body, filepath, filename, currentDateFormatted)

@@ -155,4 +155,5 @@ module.exports = {
     createMember,
     deleteMember,
     updateMember,
+    membershipTypeEnum,
 };

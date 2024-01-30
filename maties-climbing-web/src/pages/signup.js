@@ -33,6 +33,7 @@ function SignupPage() {
   const [endDate, setEndDate] = useState('');
   // State variable for file upload
   const [file, setFile] = useState(null);
+  const [paymentType, setPaymentType] = useState('studentAccount');
 
   const handleFileChange = (event) => {
     // Get the file from input
@@ -64,6 +65,7 @@ function SignupPage() {
     formData.append('start_date', "2024-01-01");
     formData.append('end_date', "2024-01-02");
     formData.append('pop', file);
+    formData.append('paymentType', paymentType)
 
       const response = await fetch("http://localhost:3001/member", {
         method: "POST",
@@ -85,99 +87,179 @@ function SignupPage() {
   };
 
   return (
-    <div className="container">
+<div className="container mt-5">
       <div className="row">
-        <h2 className="d-flex justify-content-center">Signup</h2>
+        <h2 className="d-flex justify-content-center mb-4">Signup</h2>
         <div className="row">
-          {/* Add form elements for username, email, and password */}
-          <div className="col-md-6">
-            <label htmlFor="name">Name:</label>
+          <div className="col-md-6 mb-3">
+            <label htmlFor="name" className="form-label">Name:</label>
             <input
               type="text"
               id="name"
+              className="form-control"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div className="col-md-6">
-            <label htmlFor="surname">Surname:</label>
+          <div className="col-md-6 mb-3">
+            <label htmlFor="surname" className="form-label">Surname:</label>
             <input
               type="text"
               id="surname"
+              className="form-control"
               value={surname}
               onChange={(e) => setSurname(e.target.value)}
             />
           </div>
           <div className="col-md-6">
-            <label htmlFor="username">Username:</label>
+            <label htmlFor="username" className="form-label">Username:</label>
             <input
               type="text"
               id="username"
+              className="form-control"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
           <div className="col-md-6">
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="email" className="form-label">Email:</label>
             <input
               type="email"
               id="email"
+              className="form-control"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="col-md-6">
-            <label htmlFor="phoneNumber">Phone Number:</label>
+            <label htmlFor="phoneNumber" className="form-label">Phone Number:</label>
             <input
               type="text"
               id="phoneNumber"
+              className="form-control"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
           </div>
           <div className="col-md-6">
-            <label htmlFor="foreignStudent">Foreign Student:</label>
+            <label htmlFor="foreignStudent" className="form-label">Foreign Student:</label>
             <input
               type="checkbox"
               id="foreignStudent"
+              className="form-check-input"
               checked={foreignStudent}
               onChange={(e) => setForeignStudent(e.target.checked)}
             />
           </div>
           <div className="col-md-6">
-            <label htmlFor="idNumber">ID Number:</label>
+            <label htmlFor="idNumber" className="form-label">ID Number:</label>
             <input
               type="text"
               id="idNumber"
+              className="form-control"
               value={idNumber}
               onChange={(e) => setIdNumber(e.target.value)}
             />
           </div>
           <div className="col-md-6">
-            <label htmlFor="studentNumber">Student Number:</label>
+            <label htmlFor="studentNumber" className="form-label">Student Number:</label>
             <input
               type="text"
               id="studentNumber"
+              className="form-control"
               value={studentNumber}
               onChange={(e) => setStudentNumber(e.target.value)}
             />
           </div>
-          <div className="col-md-6">
-            <label htmlFor="membershipType">Membership Type:</label>
+          <div className="col-md-6 mb-3">
+            <label htmlFor="membershipType" className="form-label">Membership Type:</label>
             <select
               id="membershipType"
+              className="form-select"
               value={membershipType}
-              onChange={(e) => setMembershipType(e.target.value)}
+              onChange={(e) => {
+                setMembershipType(e.target.value);
+                // Reset file input if membership type changes
+                setFile(null);
+              }}
             >
               <option value="">Select Membership Type</option>
               <option value="STUDENT">Student</option>
               <option value="EXTERNAL">External</option>
             </select>
           </div>
-          <div className="col-md-6">
-            <label htmlFor="gender">Gender:</label>
+          {membershipType === "STUDENT" && (
+            <div className="col-md-6 mb-3">
+              <label className="form-label">Payment Option:</label>
+              <div>
+                <input
+                  type="radio"
+                  id="studentAccount"
+                  className="form-check-input"
+                  name="paymentType"
+                  value="studentAccount"
+                  checked={paymentType === 'studentAccount'}
+                  onChange={() => setPaymentType('studentAccount')}
+                />
+                <label htmlFor="studentAccount" className="form-check-label">Pay via Student Account</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="eft"
+                  className="form-check-input"
+                  name="paymentType"
+                  value="eft"
+                  checked={paymentType === 'eft'}
+                  onChange={() => setPaymentType('eft')}
+                />
+                <label htmlFor="eft" className="form-check-label">Pay via EFT</label>
+              </div>
+              {paymentType === 'eft' && (
+                <div className="mt-3">
+                  <div className="alert alert-info">
+                    <strong>Banking Details:</strong><br/>
+                    Account Name: Your Account Name<br/>
+                    Account Number: Your Account Number<br/>
+                    Bank: Your Bank<br/>
+                    Reference: Your Reference
+                  </div>
+                  <label htmlFor="proofOfPayment" className="form-label">Proof of Payment:</label>
+                  <input
+                    type="file"
+                    id="proofOfPayment"
+                    className="form-control"
+                    onChange={handleFileChange}
+                  />
+                </div>
+              )}
+            </div>
+          )}
+          {membershipType === "EXTERNAL" && (
+            <div className="col-md-6 mb-3">
+              <div className="mt-3">
+                <div className="alert alert-info">
+                    <strong>Banking Details:</strong><br/>
+                    Account Name: Your Account Name<br/>
+                    Account Number: Your Account Number<br/>
+                    Bank: Your Bank<br/>
+                    Reference: Your Reference
+                </div>
+              </div>
+              <label htmlFor="proofOfPayment" className="form-label">Proof of Payment:</label>
+              <input
+                type="file"
+                id="proofOfPayment"
+                className="form-control"
+                onChange={handleFileChange}
+              />
+            </div>
+          )}
+          <div className="col-md-6 mb-3">
+            <label htmlFor="gender" className="form-label">Gender:</label>
             <select
               id="gender"
+              className="form-select"
               value={gender}
               onChange={(e) => setGender(e.target.value)}
             >
@@ -187,24 +269,7 @@ function SignupPage() {
             </select>
           </div>
           <div className="col-md-6">
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div className="col-md-6">
-            <label htmlFor="proofOfPayment">Proof of Payment:</label>
-              <input
-                type="file"
-                id="proofOfPayment"
-                onChange={handleFileChange}
-              />
-          </div>
-          <div className="col-md-6">
-            <button onClick={handleSignup}>Signup</button>
+            <button onClick={handleSignup} className="btn btn-primary">Signup</button>
           </div>
         </div>
       </div>

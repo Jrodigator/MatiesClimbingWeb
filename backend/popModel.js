@@ -21,7 +21,7 @@ const createPOP = (filepath, filename, currentDate) => {
                 VALUES ($1, $2, $3) RETURNING *;",
                 [filepath, filename, currentDate],
                 (error, results) => {
-                    done(); // relaes the client back to pool
+                    done(); // release the client back to pool
                     if (error) {
                         console.error("error executing save pop query", error.stack);
                         reject(error);
