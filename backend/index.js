@@ -1,11 +1,28 @@
 const express = require('express')
 const cors = require('cors');
-const app = express()
-const port = 3001
+const multer = require('multer');
+const { getCurrentFormattedDate, getFilename } = require('./utils');
+const memberModel = require('./memberModel');
+const popModel = require('./popModel');
 
-const member_model = require('./memberModel');
+const app = express();
+// Set up Multer for file upload
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '../pop/'); // Set the destination folder
+  },
+  filename: function (req, file, cb) {
+    // create the filename to save the pop as
+    const name = req.body.name;
+    const surname = req.body.surname;
+    const filename = getFilename(name, surname);
+    cb(null, filename); // Set the filename
+  }
+});
+const upload = multer({ storage: storage });
+const port = 3001;
 
-app.use(express.json())
+
 // Enable CORS for all routes
 app.use(cors({ origin: 'http://localhost:3000' }));
 // app.use(function (req, res, next) {
@@ -14,10 +31,11 @@ app.use(cors({ origin: 'http://localhost:3000' }));
 //     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
 //     next()
 // });
+app.use(express.json())
 
 
 app.get('/', (req, res) => {
-    member_model.getAllMembers()
+    memberModel.getAllMembers()
     .then(response => {
         res.status(200).send(response);
     })
@@ -30,7 +48,7 @@ app.get('/', (req, res) => {
 app.post('/member/:id', (req, res) => {
     const id = req.params.id;
     const body = req.body;
-    member_model.getMember(id, body)
+    memberModel.getMember(id, body)
     .then(response => {
         res.status(200).send(response);
     })
@@ -40,12 +58,34 @@ app.post('/member/:id', (req, res) => {
 })
 
 // save a member
-app.post('/member', (req, res) => {
-    member_model.createMember(req.body)
+app.post('/member', upload.single('pop'), (req, res) => {
+    const currentDateFormatted = getCurrentFormattedDate();
+    const membershipType = req.body.membership_type;
+    const paymentType = req.body.paymentType;
+    // the file is automatically saved to disk at ../pop/<date>-<name>-<surname>
+    
+    // if they want to pay with student account then we don't save the file
+    let filename = ""
+    let filepath = "";
+    console.log(membershipType)
+    console.log(paymentType)
+    if (membershipType === "STUDENT" && paymentType === "studentAccount") {
+        filename = req.body.student_number;
+        filepath = "student-account"
+    } else {
+        filepath = req.file.path;
+        const name = req.body.name;
+        const surname = req.body.surname;
+        filename = getFilename(name, surname);
+    }
+
+    const body = req.body;
+    memberModel.createMember(body, filepath, filename, currentDateFormatted)
     .then(response => {
         res.status(200).send(response);
     })
     .catch(error => {
+        // TODO : delete the file probably
         console.log(error);
         res.status(500).send(error);
     })
@@ -55,7 +95,7 @@ app.post('/member', (req, res) => {
 app.put("/member/:id", (req, res) => {
     const id = req.params.id;
     const body = req.body;
-    member_model.updateMember(id, body)
+    memberModel.updateMember(id, body)
     .then((response) => {
         res.status(200).send(response);
     })
@@ -66,5 +106,5 @@ app.put("/member/:id", (req, res) => {
 
 
 app.listen(port, () => {
-    console.log(`App running on port ${port}`);
+    console.log(`Express server is running on port ${port}`);
 })

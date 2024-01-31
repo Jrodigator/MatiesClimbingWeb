@@ -6,6 +6,7 @@ import "bootstrap/dist/js/bootstrap.js";
 
 import HomePage from "../pages/home";
 import NewsPage from "../pages/news";
+import GalleryPage from "../pages/gallery";
 
 const Navbar = () => {
   //  const [click, setClick] = UseState(false);
@@ -26,8 +27,7 @@ const Navbar = () => {
               <div className="col-sm-8 col-md-7 py-4">
                 <h4 className="text-white">Up coming events</h4>
                 <ul className="text-white">
-                 <li>Add events <a href="#">here</a></li>
-                 <li> </li>
+                 <li>Keep an eye here for our up coming events!</li>
                 </ul>
               </div>
               <div className="col-sm-4 offset-md-1 py-4">
@@ -39,12 +39,12 @@ const Navbar = () => {
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="text-white">
+                    <a href="https://chat.whatsapp.com/JNiZrsnaWuhHxDGYydHWq1" className="text-white">
                       Our Whatapp Group
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="text-white">
+                    <a href="https://arcadebouldering.page.link?apn=com.arcadebouldering.system_wall&ibi=com.arcadebouldering.systemWall&imv=1.0.0&isi=1519582483&link=https%3A%2F%2Fwww.arcadebouldering.com%2Fgym%3Fid%3DVKLlIRpvUcGXiWkSoBHZ" className="text-white">
                       Retroflash
                     </a>
                   </li>
@@ -73,12 +73,6 @@ const Navbar = () => {
               <li className="nav-item">
                 <a className="nav-link" href="/about">
                   About
-                </a>
-              </li>
-              <ul></ul>
-              <li className="nav-item">
-                <a className="nav-link" href="/gallery">
-                  Gallery
                 </a>
               </li>
               <ul></ul>

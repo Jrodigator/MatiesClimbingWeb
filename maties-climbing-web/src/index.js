@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-//import ReactDOM from "react-dom/server";
 import { BrowserRouter } from "react-router-dom";
-import App from "./App.js";
+import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.css";
 

@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/maties-climbing-web/static/css/main.24f5bb3b.css",
-    "main.js": "/maties-climbing-web/static/js/main.7f106d37.js",
-    "static/media/A7R0316.jpg": "/maties-climbing-web/static/media/A7R0316.2046bade0a84190272ac.jpg",
-    "static/media/4octnews.pdf": "/maties-climbing-web/static/media/4octnews.f3790c7736e011b3823b.pdf",
-    "static/media/wall-shed.jpg": "/maties-climbing-web/static/media/wall-shed.e85c42144b92f69db59b.jpg",
-    "static/media/DSCF8078-1.jpg": "/maties-climbing-web/static/media/DSCF8078-1.0ee7dfc8e2023361ce00.jpg",
-    "static/media/DSCF8141.jpg": "/maties-climbing-web/static/media/DSCF8141.3c2540849dfc087b4528.jpg",
-    "static/media/homeBG.png": "/maties-climbing-web/static/media/homeBG.31b305fecb13b73d23c6.png",
-    "static/media/Rocklands-bouldering-sky-Lumos-Photography.jpg": "/maties-climbing-web/static/media/Rocklands-bouldering-sky-Lumos-Photography.70e8895174e1b0540f8a.jpg",
-    "static/media/MatiesRulesPoster.png": "/maties-climbing-web/static/media/MatiesRulesPoster.3fb1710f5e3b2baa17fd.png",
-    "static/media/Waterworld-Montagu-Lumos-Photography.jpg": "/maties-climbing-web/static/media/Waterworld-Montagu-Lumos-Photography.91f7dc602ca3bce3b631.jpg",
-    "static/media/Rocklands-bouldering-Lumos-Photography.jpg": "/maties-climbing-web/static/media/Rocklands-bouldering-Lumos-Photography.03b2a11ec4e4d13e8bf5.jpg",
-    "static/media/4octimg.png": "/maties-climbing-web/static/media/4octimg.13a199f4e4f5eb92d43c.png",
-    "index.html": "/maties-climbing-web/index.html",
-    "main.24f5bb3b.css.map": "/maties-climbing-web/static/css/main.24f5bb3b.css.map",
-    "main.7f106d37.js.map": "/maties-climbing-web/static/js/main.7f106d37.js.map"
+    "main.css": "/static/css/main.24f5bb3b.css",
+    "main.js": "/static/js/main.0a7c412a.js",
+    "static/media/A7R0316.jpg": "/static/media/A7R0316.2046bade0a84190272ac.jpg",
+    "static/media/4octnews.pdf": "/static/media/4octnews.f3790c7736e011b3823b.pdf",
+    "static/media/wall-shed.jpg": "/static/media/wall-shed.e85c42144b92f69db59b.jpg",
+    "static/media/DSCF8078-1.jpg": "/static/media/DSCF8078-1.0ee7dfc8e2023361ce00.jpg",
+    "static/media/DSCF8141.jpg": "/static/media/DSCF8141.3c2540849dfc087b4528.jpg",
+    "static/media/homeBG.png": "/static/media/homeBG.31b305fecb13b73d23c6.png",
+    "static/media/Rocklands-bouldering-sky-Lumos-Photography.jpg": "/static/media/Rocklands-bouldering-sky-Lumos-Photography.70e8895174e1b0540f8a.jpg",
+    "static/media/MatiesRulesPoster.png": "/static/media/MatiesRulesPoster.3fb1710f5e3b2baa17fd.png",
+    "static/media/Waterworld-Montagu-Lumos-Photography.jpg": "/static/media/Waterworld-Montagu-Lumos-Photography.91f7dc602ca3bce3b631.jpg",
+    "static/media/Rocklands-bouldering-Lumos-Photography.jpg": "/static/media/Rocklands-bouldering-Lumos-Photography.03b2a11ec4e4d13e8bf5.jpg",
+    "static/media/4octimg.png": "/static/media/4octimg.13a199f4e4f5eb92d43c.png",
+    "index.html": "/index.html",
+    "main.24f5bb3b.css.map": "/static/css/main.24f5bb3b.css.map",
+    "main.0a7c412a.js.map": "/static/js/main.0a7c412a.js.map"
   },
   "entrypoints": [
     "static/css/main.24f5bb3b.css",
-    "static/js/main.7f106d37.js"
+    "static/js/main.0a7c412a.js"
   ]
 }

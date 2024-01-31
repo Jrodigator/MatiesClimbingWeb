@@ -1,13 +1,5 @@
-const Pool = require('pg').Pool
-const pool = new Pool({
-    host: 'localhost',
-    database: 'mcc',
-    user: 'postgres',
-// TODO should not include passwords and stuff in here in production
-// Install pacakge dotenv, and use environment variables to refernce these values from a .env file (and add the .env file to gitigore)
-    password: 'postgres',
-    port: 5432
-});
+const pool = require('./db');
+const popModel = require('./popModel');
 
 // from the membership_type table
 const membershipTypeEnum = {
@@ -61,7 +53,7 @@ const getMember = async (id) => {
 };
 
 // create a new member record
-const createMember = (body) => {
+const createMember = (body, filepath, filename, currentDate) => {
     return new Promise(function (resolve, reject) {
         const {name, surname, username, password, email,
                 phone_number, student_number, id_number,
@@ -76,38 +68,52 @@ const createMember = (body) => {
             console.log(`Key "${x}" does not exist in the enum.`);
             reject(new Error(`membership_type value (${membership_type}) does not exists`));
         }
-        // TODO : might have to change the type of some of these fields before inserting
-        // insert the values into the member table
-        pool.query(
-            "insert into member \
-             (name, surname, username, password, email, \
-             phone_number, student_number, id_number, \
-             foreign_student, gender, membership_type, \
-             start_date, end_date) \
-             values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) returning *;",
-            [name, surname, username, password, email,
-             phone_number, student_number, id_number,
-             foreign_student, gender, membershipTypeValue,
-             start_date, end_date],
-            (error, results) => {
-                if (error) {
-                    console.log(error)
-                    reject(error);
+
+        // create the pop model and save the metadata into that
+        popModel.createPOP(filepath, filename, currentDate)
+        .then(paymentID => {
+            // TODO : might have to change the type of some of these fields before inserting
+            // insert the values into the member table
+            pool.connect((err, client, done) => {
+                if (err) {
+                    console.error('Error acquiring client', err.stack);
+                    reject(err);
+                    return;
                 }
-                if (results && results.rows) {
-                    resolve(
-                        `A new member has been added: ${JSON.stringify(results.rows[0])}`
-                    );
-                } else {
-                    reject(new Error("No results found"));
-                }
-            }
-        );
+                client.query(
+                    "INSERT INTO member \
+                    (name, surname, username, password, email, \
+                    phone_number, student_number, id_number, \
+                    foreign_student, gender, membership_type, \
+                    start_date, end_date, latest_payment) \
+                    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *;",
+                    [
+                        name, surname, username, password, email,
+                        phone_number, student_number, id_number,
+                        foreign_student, gender, membershipTypeValue,
+                        start_date, end_date, paymentID
+                    ],
+                    (error, results) => {
+                        done(); // Release the client back to the pool
+                        if (error) {
+                            console.error('Error executing query', error.stack);
+                            reject(error);
+                            return;
+                        }
+                        if (results && results.rows && results.rows.length > 0) {
+                            resolve(`A new member has been added: ${JSON.stringify(results.rows[0])}`);
+                        } else {
+                            reject(new Error("No results found"));
+                        }
+                    }
+                );
+            });
+        });
     });
 };
 
 // delete a member
-const deleteMember = (id => {
+const deleteMember = (id) => {
     return new Promise(function (resolve, reject) {
         pool.query(
             "delete from member where member_id = $1",
@@ -120,7 +126,7 @@ const deleteMember = (id => {
             }
         );
     });
-});
+};
 
 // update a member record
 const updateMember = (id, body) => {
@@ -149,4 +155,5 @@ module.exports = {
     createMember,
     deleteMember,
     updateMember,
+    membershipTypeEnum,
 };

@@ -115,6 +115,8 @@ function AboutPage() {
                         <li>ClimbingZA Stellenbosch: <a href="https://www.climbing.co.za/wiki/Stellenbosch">https://www.climbing.co.za/wiki/Stellenbosch</a></li>
                         <li>MSCA: <a href="https://stellenbosch.mcsa.org.za/">https://stellenbosch.mcsa.org.za/</a></li>
                         <li>The Crag: <a href="https://www.thecrag.com/en/home">https://www.thecrag.com/en/home</a></li>
+                        <li>Stellenbosch Crew Climbing Whatsapp group: <a href="https://chat.whatsapp.com/0t2Bk40PjqO5rsbYWNRpNf">https://chat.whatsapp.com/0t2Bk40PjqO5rsbYWNRpNf</a></li>
+                        
                 </ul>
         </div>
 
