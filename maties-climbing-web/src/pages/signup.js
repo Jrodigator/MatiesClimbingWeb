@@ -67,7 +67,7 @@ function SignupPage() {
     formData.append('pop', file);
     formData.append('paymentType', paymentType)
 
-      const response = await fetch("http://localhost:3001/member", {
+      const response = await fetch("http://139.84.230.49:3001/member", {
         method: "POST",
         body: formData,
       });
